@@ -7,6 +7,7 @@
 :root{--bg:var(--tg-theme-bg-color,#fff);--bg2:var(--tg-theme-secondary-bg-color,#f1f3f5);--text:var(--tg-theme-text-color,#14171a);--hint:var(--tg-theme-hint-color,#7b8794);--accent:var(--tg-theme-button-color,#2481cc);--atext:var(--tg-theme-button-text-color,#fff);--line:color-mix(in srgb,var(--hint) 25%,transparent)}
 @media(prefers-color-scheme:dark){:root{--bg:var(--tg-theme-bg-color,#17212b);--bg2:var(--tg-theme-secondary-bg-color,#0e1621);--text:var(--tg-theme-text-color,#f5f5f5)}}
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
 html,body{background:var(--bg);color:var(--text);font:16px/1.35 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 body{padding-bottom:96px}
 header{position:sticky;top:0;background:var(--bg);padding:12px 14px 8px;z-index:2;border-bottom:1px solid var(--line)}
@@ -33,6 +34,7 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline
   <h1>Вам есть 18 лет?</h1>
   <p>Товары в каталоге предназначены только для совершеннолетних.</p>
   <button id="yes">Да, мне есть 18</button><button class="no" id="no">Нет</button>
+  <p style="font-size:12px;text-align:center">версия 2</p>
 </div>
 <div id="app"></div>
 <div id="bar" hidden><button id="barBtn"></button></div>
