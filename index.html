@@ -30,9 +30,12 @@ body { background: var(--bg); color: var(--text); padding-bottom: 96px; }
 
 /* Шапка */
 header { position: sticky; top: 0; background: rgba(19, 17, 28, 0.9); backdrop-filter: blur(10px); padding: 12px 16px; z-index: 10; border-bottom: 1px solid var(--line); }
+.header-top { display: flex; gap: 8px; }
 input { width: 100%; height: 44px; border: 0; border-radius: 12px; background: var(--bg2); color: var(--text); padding: 0 16px; font-size: 16px; outline: none; transition: 0.2s; }
 input:focus { outline: 2px solid var(--accent); }
 input::placeholder { color: var(--hint); }
+#profBtn { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; flex-shrink: 0; color: var(--text); }
+
 .chips { display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { border: 0; border-radius: 20px; padding: 8px 16px; background: var(--bg2); color: var(--text); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: 0.2s; }
@@ -40,8 +43,9 @@ input::placeholder { color: var(--hint); }
 
 /* Сетка товаров */
 .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px; }
-.card { display: flex; flex-direction: column; background: var(--bg2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.img-ph { aspect-ratio: 1; background: #1C1929; display: flex; align-items: center; justify-content: center; color: var(--hint); font-size: 12px; }
+.card { position: relative; display: flex; flex-direction: column; background: var(--bg2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.badge { position: absolute; top: 8px; left: 8px; background: linear-gradient(135deg, #E11D48, #BE123C); color: #FFFFFF; padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4); z-index: 2; }
+.img-ph { aspect-ratio: 1; background: #1C1929; display: flex; align-items: center; justify-content: center; color: var(--hint); font-size: 12px; width: 100%; object-fit: cover; }
 .info { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; gap: 8px; }
 .nm { font-size: 14px; font-weight: 500; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--text); }
 .bot { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
@@ -63,7 +67,21 @@ input::placeholder { color: var(--hint); }
 .sum-box { padding: 20px 16px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; background: var(--bg2); border-top: 1px solid var(--line); }
 .sum-box span:last-child { color: #E9D5FF; }
 
-/* Нижняя кнопка (только вне Telegram, для проверки в браузере) */
+/* Блок информации */
+.checkout-info { margin: 16px; padding: 16px; background: rgba(147, 51, 234, 0.1); border: 1px dashed var(--accent); border-radius: 12px; font-size: 14px; line-height: 1.5; color: #D8B4FE; }
+.checkout-info strong { color: #FFFFFF; font-weight: 600; font-size: 15px; }
+.checkout-info div { margin-bottom: 8px; }
+.checkout-info div:last-child { margin-bottom: 0; }
+
+/* Профиль */
+.prof-head { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--line); background: var(--bg2); }
+.history-item { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.history-date { font-size: 13px; color: var(--hint); margin-bottom: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.history-row { font-size: 14px; margin-bottom: 4px; display: flex; justify-content: space-between; gap: 8px; color: var(--text); }
+.history-row:last-child { margin-bottom: 0; }
+.history-total { margin-top: 8px; font-weight: bold; color: #E9D5FF; text-align: right; }
+
+/* Нижняя кнопка */
 #bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--bg); border-top: 1px solid var(--line); z-index: 20; }
 #bar button { width: 100%; height: 50px; border: 0; border-radius: 14px; background: var(--accent); color: var(--atext); font-size: 16px; font-weight: 600; cursor: pointer; }
 
@@ -75,23 +93,6 @@ input::placeholder { color: var(--hint); }
 .btn-add:active { transform: scale(0.85); }
 .ctrl button:active { transform: scale(0.8); }
 .cart-item { animation: fadeInUp 0.3s ease forwards; }
-
-/* Блок информации об оплате и доставке */
-.checkout-info { margin: 16px; padding: 16px; background: rgba(147, 51, 234, 0.1); border: 1px dashed var(--accent); border-radius: 12px; font-size: 14px; line-height: 1.5; color: #D8B4FE; }
-.checkout-info strong { color: #FFFFFF; font-weight: 600; font-size: 15px; }
-.checkout-info div { margin-bottom: 8px; }
-.checkout-info div:last-child { margin-bottom: 0; }
-
-/* Способ получения */
-.receive { margin: 16px; padding: 16px; background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; }
-.receive strong { font-size: 15px; }
-.seg { display: flex; gap: 8px; margin-top: 10px; }
-.seg button { flex: 1; height: 42px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--text); font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-.seg button.on { background: var(--accent); border-color: var(--accent); color: var(--atext); }
-#addrBox { margin-top: 12px; }
-#addrBox p { color: var(--hint); font-size: 13px; line-height: 1.4; margin-top: 8px; }
-.sum-box { flex-wrap: wrap; }
-.sum-note { flex-basis: 100%; font-size: 13px; font-weight: 400; color: var(--hint); margin-top: 6px; }
 </style>
 </head>
 <body>
@@ -106,7 +107,10 @@ input::placeholder { color: var(--hint); }
 
 <div id="view-list" class="animate-view">
   <header>
-    <input id="q" placeholder="Поиск..." autocomplete="off">
+    <div class="header-top">
+      <input id="q" placeholder="Поиск..." autocomplete="off">
+      <button id="profBtn">👤</button>
+    </div>
     <div class="chips" id="chips"></div>
   </header>
   <div class="grid" id="grid"></div>
@@ -119,36 +123,39 @@ input::placeholder { color: var(--hint); }
   </div>
   <div id="cart-list"></div>
 
-  <!-- Информационный блок -->
-  <div class="receive" id="receive" hidden>
-    <strong>Как получить заказ</strong>
-    <div class="seg"><button id="optMeet" class="on">Встреча</button><button id="optDel">Доставка</button></div>
-    <div id="addrBox" hidden>
-      <input id="addr" placeholder="Улица, дом, подъезд" maxlength="200" autocomplete="street-address">
-      <p>Стоимость доставки от 150 ₽ и зависит от расстояния. Точную сумму назовём после того, как получим адрес.</p>
-    </div>
-  </div>
-
+  <!-- Обновленный Информационный блок -->
   <div class="checkout-info" id="checkout-info" hidden>
     <div>
-      <strong>💳 Способы оплаты:</strong><br>
-      • Банковским переводом<br>
+      <strong>💳 Оплата:</strong><br>
+      • Переводом на карту<br>
       • Наличными при встрече
     </div>
     <div>
-      <strong>🚚 Доставка:</strong><br>
-      • От 150 ₽, зависит от расстояния
+      <strong>🤝 Получение:</strong><br>
+      • Встреча в удобном месте<br>
+      • О доставке договоримся в чате
     </div>
   </div>
 
   <div class="sum-box" id="cart-sum" hidden></div>
 </div>
 
+<!-- Блок профиля и истории заказов -->
+<div id="view-profile" hidden>
+  <div class="prof-head">
+    <button class="back" id="backProfBtn" hidden>← Назад</button>
+    <h2>Мой профиль</h2>
+  </div>
+  <div style="padding: 16px;">
+    <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--hint);">История заказов</h3>
+    <div id="history-list"></div>
+  </div>
+</div>
+
 <div id="bar" hidden><button id="barBtn"></button></div>
 
 <script>
 const tg = window.Telegram && window.Telegram.WebApp;
-// Внутри Telegram платформа не "unknown". (initData для кнопок клавиатуры бывает пустой, поэтому по нему не определяем.)
 const inTg = !!(tg && tg.platform && tg.platform !== "unknown");
 const CUR = "₽";
 const fmt = n => n.toLocaleString("ru-RU") + " " + CUR;
@@ -159,17 +166,21 @@ let cats = ["Все"];
 let cart = {};
 let activeCat = "Все";
 let q = "";
-let currentView = "list"; // list или cart
-let delivery = false, address = "";
-const DELIVERY_FROM = 150;
+let currentView = "list"; 
 
-// Загрузка товаров
 async function init() {
   try {
     const res = await fetch('products.json?v=' + Date.now());
     const data = await res.json();
     for (let id in data) {
-      CATALOG.push({ id, nm: data[id].name, pr: data[id].price, cat: data[id].category || "Товары" });
+      CATALOG.push({ 
+        id, 
+        nm: data[id].name, 
+        pr: data[id].price, 
+        cat: data[id].category || "Товары",
+        badge: data[id].badge || "",
+        img: data[id].img || "" 
+      });
     }
     cats = ["Все", ...new Set(CATALOG.map(c => c.cat))];
     renderChips();
@@ -179,7 +190,6 @@ async function init() {
   }
 }
 
-// Кнопки +/-
 function getCtrl(id) {
   const count = cart[id] || 0;
   if (count === 0) return `<button class="btn-add" onclick="chg('${id}', 1)">+</button>`;
@@ -214,7 +224,8 @@ function renderGrid() {
   }
   $('grid').innerHTML = filtered.map(c => `
     <div class="card">
-      <div class="img-ph">Нет фото</div>
+      ${c.badge ? `<div class="badge">${c.badge}</div>` : ''}
+      ${c.img ? `<img src="${c.img}" class="img-ph">` : `<div class="img-ph">Нет фото</div>`}
       <div class="info">
         <div class="nm">${c.nm}</div>
         <div class="bot">
@@ -232,7 +243,6 @@ function renderCart() {
     $('cart-list').innerHTML = '<div class="empty">Корзина пуста</div>';
     $('cart-sum').hidden = true;
     $('checkout-info').hidden = true;
-    $('receive').hidden = true;
     return;
   }
   let total = 0;
@@ -249,13 +259,10 @@ function renderCart() {
       </div>`;
   }).join("");
   $('cart-sum').hidden = false;
-  $('cart-sum').innerHTML = `<span>Итого:</span><span>${fmt(total)}</span>` +
-    (delivery ? `<div class="sum-note">+ доставка от ${fmt(DELIVERY_FROM)} (зависит от расстояния)</div>` : "");
+  $('cart-sum').innerHTML = `<span>Итого:</span><span>${fmt(total)}</span>`;
   $('checkout-info').hidden = false;
-  $('receive').hidden = false;
 }
 
-// Перезапуск анимации при смене экрана
 function switchViewTo(viewId) {
   const el = $(viewId);
   el.classList.remove('animate-view');
@@ -264,50 +271,84 @@ function switchViewTo(viewId) {
   el.hidden = false;
 }
 
-// Главная кнопка (в Telegram — нативная, вне Telegram — нижняя панель)
 function updateMainButton() {
   const n = Object.values(cart).reduce((a, b) => a + b, 0);
   let sum = 0;
   Object.keys(cart).forEach(id => { sum += CATALOG.find(c => c.id === id).pr * cart[id]; });
-  const label = currentView === "list" ? `Корзина · ${fmt(sum)}` : `Оформить заказ · ${fmt(sum)}${delivery ? " + доставка" : ""}`;
+  const label = currentView === "list" ? `Корзина · ${fmt(sum)}` : `Оформить заказ · ${fmt(sum)}`;
   if (inTg) {
-    if (n) { tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
+    if (n && currentView !== "profile") { tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
   } else {
-    $('bar').hidden = !n;
+    $('bar').hidden = (!n || currentView === "profile");
     $('barBtn').textContent = label;
   }
+}
+
+function showProfile() {
+  currentView = "profile";
+  $('view-list').hidden = true;
+  $('view-cart').hidden = true;
+  switchViewTo('view-profile');
+  
+  if (inTg) { tg.BackButton.show(); tg.MainButton.hide(); } 
+  else { $('backProfBtn').hidden = false; $('bar').hidden = true; }
+  
+  const history = JSON.parse(localStorage.getItem("ordersHistory") || "[]");
+  if (!history.length) {
+    $('history-list').innerHTML = '<div class="empty">Вы еще ничего не заказывали</div>';
+    return;
+  }
+  
+  $('history-list').innerHTML = history.map(h => `
+    <div class="history-item">
+      <div class="history-date">${h.date}</div>
+      ${h.items.map(i => `<div class="history-row"><span>${i.nm} × ${i.qty}</span><span>${fmt(i.sum)}</span></div>`).join("")}
+      <div class="history-total">Итого: ${fmt(h.total)}</div>
+    </div>
+  `).join("");
 }
 
 function showCart() {
   currentView = "cart";
   $('view-list').hidden = true;
+  $('view-profile').hidden = true;
   switchViewTo('view-cart');
   if (inTg) tg.BackButton.show(); else $('backBtn').hidden = false;
   renderCart();
   updateMainButton();
   window.scrollTo(0, 0);
 }
+
 function showList() {
   currentView = "list";
   $('view-cart').hidden = true;
+  $('view-profile').hidden = true;
   switchViewTo('view-list');
   if (inTg) tg.BackButton.hide();
   renderGrid();
   updateMainButton();
   window.scrollTo(0, 0);
 }
+
 function sendOrder() {
-  if (delivery && !address.trim()) {
-    const msg = "Укажите адрес доставки";
-    try { tg.showAlert(msg); } catch (e) { alert(msg); }
-    $('addr').focus();
-    return;
-  }
+  const history = JSON.parse(localStorage.getItem("ordersHistory") || "[]");
+  let orderLines = [];
+  let total = 0;
+  
+  Object.keys(cart).forEach(id => {
+    const c = CATALOG.find(x => x.id === id);
+    orderLines.push({ nm: c.nm, qty: cart[id], sum: c.pr * cart[id] });
+    total += c.pr * cart[id];
+  });
+  
+  history.unshift({ date: new Date().toLocaleString("ru-RU", {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}), items: orderLines, total });
+  localStorage.setItem("ordersHistory", JSON.stringify(history.slice(0, 15)));
+
   const order = { i: Object.entries(cart).map(([id, n]) => [+id, n]) };
-  if (delivery) { order.d = 1; order.a = address.trim().slice(0, 200); }
   if (inTg) tg.sendData(JSON.stringify(order));
-  else alert("Данные заказа:\n" + JSON.stringify(order));
+  else alert("Заказ отправлен (проверка в браузере)!");
 }
+
 function mainAction() { currentView === "list" ? showCart() : sendOrder(); }
 
 if (inTg) {
@@ -319,21 +360,14 @@ if (inTg) {
     tg.MainButton.setParams({ color: "#9333EA", text_color: "#FFFFFF" });
   } catch (e) {}
   tg.MainButton.onClick(mainAction);
-  tg.BackButton.onClick(showList);
+  tg.BackButton.onClick(() => {
+    if (currentView === "cart" || currentView === "profile") showList();
+  });
 }
-function setDelivery(v) {
-  delivery = v;
-  $('optMeet').classList.toggle('on', !v);
-  $('optDel').classList.toggle('on', v);
-  $('addrBox').hidden = !v;
-  if (currentView === "cart") { renderCart(); updateMainButton(); }
-  if (v) $('addr').focus();
-}
-$('optMeet').onclick = () => setDelivery(false);
-$('optDel').onclick = () => setDelivery(true);
-$('addr').addEventListener('input', e => { address = e.target.value; });
 $('barBtn').onclick = mainAction;
 $('backBtn').onclick = showList;
+$('profBtn').onclick = showProfile;
+$('backProfBtn').onclick = showList;
 $('q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); renderGrid(); });
 
 // 18+
