@@ -208,5 +208,11 @@
     "name": "тестовый товар",
     "price": 350,
     "category": "жидкость"
+  },
+  "43": {
+    "name": "тестовый",
+    "price": 450,
+    "category": "жидкость",
+    "img": "https://Ivan-laka.github.io/shop/images/43.jpg"
   }
 }
