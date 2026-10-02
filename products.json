@@ -1,43 +1,210 @@
 {
- "1": {"name": "D.L.T.A 50 MG (BURN drak energy цитрус)", "price": 300, "category": "Жидкости"},
- "2": {"name": "D.L.T.A 50 MG (Blue energy)", "price": 300, "category": "Жидкости"},
- "3": {"name": "D.L.T.A 50 MG (Burn tropical mix)", "price": 300, "category": "Жидкости"},
- "4": {"name": "D.L.T.A Adrenaline 150 mg МИКС", "price": 320, "category": "Жидкости"},
- "5": {"name": "D.L.T.A BURN 150 МГ МИКС", "price": 320, "category": "Жидкости"},
- "6": {"name": "D.L.T.A Red Bull МИКС", "price": 320, "category": "Жидкости"},
- "7": {"name": "EVIL HUSKY 60 MG (Ананасовые тропики)", "price": 380, "category": "Жидкости"},
- "8": {"name": "EVIL HUSKY 60 MG (Арбузный фреш)", "price": 380, "category": "Жидкости"},
- "9": {"name": "EVIL HUSKY 60 MG (Малина ежевика)", "price": 380, "category": "Жидкости"},
- "10": {"name": "EVIL HUSKY 60 MG (Микс ягод)", "price": 380, "category": "Жидкости"},
- "11": {"name": "ICEBERG HARDCORE (150 MG) - микс (5 вкусов)", "price": 380, "category": "Жидкости"},
- "12": {"name": "ICEBERG OVERKILL (200 MG) - микс (6 вкусов)", "price": 380, "category": "Жидкости"},
- "13": {"name": "ISTERIKA & Злая монашка 201MG - микс (12 вкусов)", "price": 360, "category": "Жидкости"},
- "14": {"name": "KASTA COVID 228 МИКС", "price": 240, "category": "Жидкости"},
- "15": {"name": "MONSTERVAPOR SOUR 7% - Гранат клюква", "price": 380, "category": "Жидкости"},
- "16": {"name": "MONSTERVAPOR SOUR 7% - Киви лайм", "price": 380, "category": "Жидкости"},
- "17": {"name": "MONSTERVAPOR SOUR 7% - Кислые Ананас Манго", "price": 380, "category": "Жидкости"},
- "18": {"name": "PODONKI CRITICAL (Малина ежевика лед)", "price": 380, "category": "Жидкости"},
- "19": {"name": "PODONKI CRITICAL (Яблочный холс)", "price": 380, "category": "Жидкости"},
- "20": {"name": "Анархия V2 70 MG (Арбуз персик)", "price": 340, "category": "Жидкости"},
- "21": {"name": "Анархия V2 70 MG (Зеленое яблоко)", "price": 340, "category": "Жидкости"},
- "22": {"name": "Анархия V2 70 MG (Личи маракуйя)", "price": 340, "category": "Жидкости"},
- "23": {"name": "Анархия V2 70 MG (Малиновый лимонад)", "price": 340, "category": "Жидкости"},
- "24": {"name": "Анархия V2 70 MG (Манго малина)", "price": 340, "category": "Жидкости"},
- "25": {"name": "Анархия V2 70 MG (Персик ананас)", "price": 340, "category": "Жидкости"},
- "26": {"name": "Анархия V2 70 MG (Цитрусовый энергетик)", "price": 340, "category": "Жидкости"},
- "27": {"name": "Анархия V2 70 MG (Энергетик с личи)", "price": 340, "category": "Жидкости"},
- "28": {"name": "Злая лабуба extra hard (Арбуз земляника)", "price": 320, "category": "Жидкости"},
- "29": {"name": "Злая лабуба extra hard (Арбуз малина)", "price": 320, "category": "Жидкости"},
- "30": {"name": "Злая лабуба extra hard (Виноград малина)", "price": 320, "category": "Жидкости"},
- "31": {"name": "Злая лабуба extra hard (Дыня)", "price": 320, "category": "Жидкости"},
- "32": {"name": "Злая лабуба extra hard (Лесные ягоды)", "price": 320, "category": "Жидкости"},
- "33": {"name": "Злая лабуба extra hard (Холодный виноград)", "price": 320, "category": "Жидкости"},
- "34": {"name": "Злая монашка x HOTSPOT (Киви питайя алоэ)", "price": 440, "category": "Жидкости"},
- "35": {"name": "Злая монашка x HOTSPOT (Яблоко маракуйя)", "price": 440, "category": "Жидкости"},
- "36": {"name": "Испаритель smoant K-1 (0.3 ом)", "price": 180, "category": "Комплектующие"},
- "37": {"name": "Картридж Vaporesso xros (0.4 ом) 3 мл - 4 шт (пачка)", "price": 940, "category": "Комплектующие"},
- "38": {"name": "УБИВАШКА 80 MG (Малина банан)", "price": 400, "category": "Жидкости"},
- "39": {"name": "УБИВАШКА 80 MG (Тропический смузи)", "price": 400, "category": "Жидкости"},
- "40": {"name": "УБИВАШКА 80 MG (Фанта голубая малина)", "price": 400, "category": "Жидкости"},
- "41": {"name": "УБИВАШКА 80 MG (Ягодный морс)", "price": 400, "category": "Жидкости"}
+  "1": {
+    "name": "D.L.T.A 50 MG (BURN drak energy цитрус)",
+    "price": 350,
+    "category": "Жидкости",
+    "badge": "🔥 Хит",
+    "img": "https://dummyimage.com/200x200/242032/fff&text=DLTA+1"
+  },
+  "2": {
+    "name": "D.L.T.A 50 MG (Blue energy)",
+    "price": 350,
+    "category": "Жидкости",
+    "badge": "🎁 Акция"
+  },
+  "3": {
+    "name": "D.L.T.A 50 MG (Burn tropical mix)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "4": {
+    "name": "D.L.T.A Adrenaline 150 mg МИКС",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "5": {
+    "name": "D.L.T.A BURN 150 МГ МИКС",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "6": {
+    "name": "D.L.T.A Red Bull МИКС",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "7": {
+    "name": "EVIL HUSKY 60 MG (Ананасовые тропики)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "8": {
+    "name": "EVIL HUSKY 60 MG (Арбузный фреш)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "9": {
+    "name": "EVIL HUSKY 60 MG (Малина ежевика)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "10": {
+    "name": "EVIL HUSKY 60 MG (Микс ягод)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "11": {
+    "name": "ICEBERG HARDCORE (150 MG) - микс (5 вкусов)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "12": {
+    "name": "ICEBERG OVERKILL (200 MG) - микс (6 вкусов)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "13": {
+    "name": "ISTERIKA & Злая монашка 201MG - микс (12 вкусов)",
+    "price": 360,
+    "category": "Жидкости"
+  },
+  "14": {
+    "name": "KASTA COVID 228 МИКС",
+    "price": 240,
+    "category": "Жидкости"
+  },
+  "15": {
+    "name": "MONSTERVAPOR SOUR 7% - Гранат клюква",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "16": {
+    "name": "MONSTERVAPOR SOUR 7% - Киви лайм",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "17": {
+    "name": "MONSTERVAPOR SOUR 7% - Кислые Ананас Манго",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "18": {
+    "name": "PODONKI CRITICAL (Малина ежевика лед)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "19": {
+    "name": "PODONKI CRITICAL (Яблочный холс)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "20": {
+    "name": "Анархия V2 70 MG (Арбуз персик)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "21": {
+    "name": "Анархия V2 70 MG (Зеленое яблоко)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "22": {
+    "name": "Анархия V2 70 MG (Личи маракуйя)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "23": {
+    "name": "Анархия V2 70 MG (Малиновый лимонад)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "24": {
+    "name": "Анархия V2 70 MG (Манго малина)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "25": {
+    "name": "Анархия V2 70 MG (Персик ананас)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "26": {
+    "name": "Анархия V2 70 MG (Цитрусовый энергетик)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "27": {
+    "name": "Анархия V2 70 MG (Энергетик с личи)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "28": {
+    "name": "Злая лабуба extra hard (Арбуз земляника)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "29": {
+    "name": "Злая лабуба extra hard (Арбуз малина)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "30": {
+    "name": "Злая лабуба extra hard (Виноград малина)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "31": {
+    "name": "Злая лабуба extra hard (Дыня)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "32": {
+    "name": "Злая лабуба extra hard (Лесные ягоды)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "33": {
+    "name": "Злая лабуба extra hard (Холодный виноград)",
+    "price": 350,
+    "category": "Жидкости"
+  },
+  "34": {
+    "name": "Злая монашка x HOTSPOT (Киви питайя алоэ)",
+    "price": 440,
+    "category": "Жидкости"
+  },
+  "35": {
+    "name": "Злая монашка x HOTSPOT (Яблоко маракуйя)",
+    "price": 440,
+    "category": "Жидкости"
+  },
+  "36": {
+    "name": "Испаритель smoant K-1 (0.3 ом)",
+    "price": 180,
+    "category": "Комплектующие"
+  },
+  "37": {
+    "name": "Картридж Vaporesso xros (0.4 ом) 3 мл - 4 шт (пачка)",
+    "price": 940,
+    "category": "Комплектующие"
+  },
+  "38": {
+    "name": "УБИВАШКА 80 MG (Малина банан)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "39": {
+    "name": "УБИВАШКА 80 MG (Тропический смузи)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "40": {
+    "name": "УБИВАШКА 80 MG (Фанта голубая малина)",
+    "price": 400,
+    "category": "Жидкости"
+  },
+  "41": {
+    "name": "УБИВАШКА 80 MG (Ягодный морс)",
+    "price": 400,
+    "category": "Жидкости"
+  }
 }
