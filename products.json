@@ -2,15 +2,12 @@
   "1": {
     "name": "D.L.T.A 50 MG (BURN drak energy цитрус)",
     "price": 350,
-    "category": "Жидкости",
-    "badge": "🔥 Хит",
-    "img": "https://dummyimage.com/200x200/242032/fff&text=DLTA+1"
+    "category": "Жидкости"
   },
   "2": {
     "name": "D.L.T.A 50 MG (Blue energy)",
     "price": 350,
-    "category": "Жидкости",
-    "badge": "🎁 Акция"
+    "category": "Жидкости"
   },
   "3": {
     "name": "D.L.T.A 50 MG (Burn tropical mix)",
