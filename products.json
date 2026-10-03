@@ -219,5 +219,11 @@
     "name": "что либо",
     "price": 350,
     "category": "Жидкости"
+  },
+  "45": {
+    "name": "тестовый 2",
+    "price": 350,
+    "category": "жидкости",
+    "img": "https://Ivan-laka.github.io/shop/images/45.jpg"
   }
 }
