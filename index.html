@@ -1,385 +1,139 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<title>Каталог</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
-<style>
-/* Фиксированная тёмная тема с фиолетовым акцентом */
-:root {
-  --bg: #13111C;
-  --bg2: #242032;
-  --text: #F3F1F8;
-  --hint: #8D879F;
-  --accent: #9333EA;
-  --atext: #FFFFFF;
-  --line: #332E47;
-}
-* { box-sizing: border-box; margin: 0; -webkit-tap-highlight-color: transparent; font-family: system-ui, -apple-system, sans-serif; }
-[hidden] { display: none !important; }
-body { background: var(--bg); color: var(--text); padding-bottom: 96px; }
-
-/* Окно 18+ */
-.gate { position: fixed; inset: 0; background: var(--bg); z-index: 99; display: flex; flex-direction: column; justify-content: center; padding: 28px; gap: 14px; }
-.gate h1 { font-size: 26px; color: var(--text); }
-.gate p { color: var(--hint); }
-.gate button { width: 100%; height: 50px; border: 0; border-radius: 14px; background: var(--accent); color: var(--atext); font-weight: 600; font-size: 16px; cursor: pointer; }
-.gate .no { background: var(--bg2); color: var(--text); }
-.gate .ver { font-size: 12px; text-align: center; }
-
-/* Шапка */
-header { position: sticky; top: 0; background: rgba(19, 17, 28, 0.9); backdrop-filter: blur(10px); padding: 12px 16px; z-index: 10; border-bottom: 1px solid var(--line); }
-.header-top { display: flex; gap: 8px; }
-input { width: 100%; height: 44px; border: 0; border-radius: 12px; background: var(--bg2); color: var(--text); padding: 0 16px; font-size: 16px; outline: none; transition: 0.2s; }
-input:focus { outline: 2px solid var(--accent); }
-input::placeholder { color: var(--hint); }
-#profBtn { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 20px; cursor: pointer; flex-shrink: 0; color: var(--text); }
-
-.chips { display: flex; gap: 8px; margin-top: 12px; overflow-x: auto; scrollbar-width: none; }
-.chips::-webkit-scrollbar { display: none; }
-.chip { border: 0; border-radius: 20px; padding: 8px 16px; background: var(--bg2); color: var(--text); font-size: 14px; font-weight: 500; white-space: nowrap; cursor: pointer; transition: 0.2s; }
-.chip.active { background: var(--accent); color: var(--atext); box-shadow: 0 4px 12px rgba(147, 51, 234, 0.3); }
-
-/* Сетка товаров */
-.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px; }
-.card { position: relative; display: flex; flex-direction: column; background: var(--bg2); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-.badge { position: absolute; top: 8px; left: 8px; background: linear-gradient(135deg, #E11D48, #BE123C); color: #FFFFFF; padding: 4px 8px; border-radius: 8px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(225, 29, 72, 0.4); z-index: 2; }
-.img-ph { aspect-ratio: 1; background: linear-gradient(135deg, #2A253A, #1C1929); display: flex; align-items: center; justify-content: center; color: var(--hint); font-size: 12px; width: 100%; object-fit: cover; }
-.info { padding: 12px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; gap: 8px; }
-.nm { font-size: 14px; font-weight: 500; line-height: 1.2; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; color: var(--text); }
-.bot { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
-.pr { font-size: 16px; font-weight: 700; color: #E9D5FF; }
-
-/* Кнопки +/- */
-.btn-add { width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--accent); color: var(--atext); font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(147, 51, 234, 0.4); }
-.ctrl { display: flex; align-items: center; background: #1C1929; border-radius: 16px; height: 32px; border: 1px solid var(--line); }
-.ctrl button { width: 32px; height: 32px; background: none; border: 0; color: var(--text); font-size: 18px; cursor: pointer; }
-.ctrl span { min-width: 24px; text-align: center; font-weight: 600; font-size: 14px; }
-
-/* Корзина - Обновленный дизайн карточек */
-.cart-head { padding: 16px; border-bottom: 1px solid var(--line); background: var(--bg2); display: flex; align-items: center; gap: 12px; }
-.cart-head h2 { font-size: 20px; }
-.back { border: 1px solid var(--line); background: var(--bg); color: var(--text); border-radius: 12px; padding: 8px 12px; font-size: 14px; cursor: pointer; }
-#cart-list { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-.cart-item { display: flex; align-items: center; justify-content: space-between; padding: 16px; background: linear-gradient(145deg, #2A253A, #201C2D); border: 1px solid rgba(147, 51, 234, 0.2); border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); animation: fadeInUp 0.3s ease forwards; }
-.cart-item .nm { -webkit-line-clamp: 2; font-size: 15px; margin-bottom: 8px; font-weight: 500; }
-.cart-item .pr { font-size: 16px; font-weight: 700; color: #E9D5FF; }
-.empty { padding: 40px 16px; text-align: center; color: var(--hint); }
-.sum-box { padding: 20px 16px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; background: var(--bg2); border-top: 1px solid var(--line); }
-.sum-box span:last-child { color: #E9D5FF; }
-
-/* Блок информации */
-.checkout-info { margin: 0 16px 16px 16px; padding: 16px; background: rgba(147, 51, 234, 0.1); border: 1px dashed var(--accent); border-radius: 12px; font-size: 14px; line-height: 1.5; color: #D8B4FE; }
-.checkout-info strong { color: #FFFFFF; font-weight: 600; font-size: 15px; }
-.checkout-info div { margin-bottom: 8px; }
-.checkout-info div:last-child { margin-bottom: 0; }
-
-/* Профиль */
-.prof-head { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--line); background: var(--bg2); }
-.history-item { background: var(--bg2); border: 1px solid var(--line); border-radius: 12px; padding: 12px; margin-bottom: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.history-date { font-size: 13px; color: var(--hint); margin-bottom: 8px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
-.history-row { font-size: 14px; margin-bottom: 4px; display: flex; justify-content: space-between; gap: 8px; color: var(--text); }
-.history-row:last-child { margin-bottom: 0; }
-.history-total { margin-top: 8px; font-weight: bold; color: #E9D5FF; text-align: right; }
-
-/* Нижняя кнопка */
-#bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px)); background: var(--bg); border-top: 1px solid var(--line); z-index: 20; }
-#bar button { width: 100%; height: 50px; border: 0; border-radius: 14px; background: var(--accent); color: var(--atext); font-size: 16px; font-weight: 600; cursor: pointer; }
-
-/* Анимации */
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-.animate-view { animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.gate button, .btn-add, .ctrl button { transition: transform 0.1s; }
-.gate button:active { transform: scale(0.95); }
-.btn-add:active { transform: scale(0.85); }
-.ctrl button:active { transform: scale(0.8); }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --bg: #0f172a;        /* Темный графит */
+            --card: rgba(30, 41, 59, 0.7); /* Прозрачное стекло */
+            --accent: #10b981;    /* Изумрудный неон */
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --error: #ef4444;
+        }
+        body { 
+            background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; padding: 15px; padding-bottom: 80px; 
+        }
+        /* Эффект стекла для карточек */
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .card { 
+            background: var(--card); border-radius: 16px; padding: 12px; text-align: center;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .card img { width: 100%; border-radius: 10px; height: 130px; object-fit: cover; margin-bottom: 10px; }
+        .title { font-weight: 600; font-size: 0.95em; margin-bottom: 5px; }
+        .price { color: var(--accent); font-weight: 800; font-size: 1.2em; margin-bottom: 10px; }
+        
+        /* Бейджи наличия */
+        .stock-badge { font-size: 0.75em; font-weight: 700; padding: 4px 8px; border-radius: 8px; display: inline-block; margin-bottom: 10px; }
+        .in-stock { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .out-stock { background: rgba(239, 68, 68, 0.15); color: #f87171; }
+        
+        /* Кнопки */
+        button { 
+            background: var(--accent); color: #fff; border: none; padding: 10px 15px; 
+            border-radius: 10px; width: 100%; font-weight: 600; cursor: pointer; transition: 0.2s;
+        }
+        button:active { transform: scale(0.95); }
+        button:disabled { background: #334155; color: var(--text-muted); cursor: not-allowed; }
+        
+        /* Нижняя панель корзины */
+        #cart-bar { 
+            position: fixed; bottom: 0; left: 0; width: 100%; 
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(15px);
+            padding: 15px 20px; box-sizing: border-box; border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center; z-index: 100;
+        }
+        #cart-bar button { width: auto; padding: 12px 24px; }
+        .total-price { font-size: 1.2em; font-weight: bold; }
+    </style>
 </head>
 <body>
+    <div class="grid" id="catalog"></div>
 
-<div class="gate" id="gate">
-  <h1>Вам есть 18 лет?</h1>
-  <p>Товары в каталоге предназначены только для совершеннолетних.</p>
-  <button id="yes">Да, мне есть 18</button>
-  <button class="no" id="no">Нет</button>
-  <p class="ver">версия 7</p>
-</div>
-
-<div id="view-list" class="animate-view">
-  <header>
-    <div class="header-top">
-      <input id="q" placeholder="Поиск..." autocomplete="off">
-      <button id="profBtn">👤</button>
+    <div id="cart-bar" style="display: none;">
+        <div class="total-price"><span id="total">0</span> ₽</div>
+        <button onclick="sendOrder()">Оформить</button>
     </div>
-    <div class="chips" id="chips"></div>
-  </header>
-  <div class="grid" id="grid"></div>
-</div>
 
-<div id="view-cart" hidden>
-  <div class="cart-head">
-    <button class="back" id="backBtn" hidden>← Назад</button>
-    <h2>Корзина</h2>
-  </div>
-  <div id="cart-list"></div>
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        let cart = {};
+        let globalProducts = {};
 
-  <div class="checkout-info" id="checkout-info" hidden>
-    <div>
-      <strong>💳 Оплата:</strong><br>
-      • Переводом на карту<br>
-      • Наличными при встрече
-    </div>
-    <div>
-      <strong>🤝 Получение:</strong><br>
-      • Встреча в удобном месте<br>
-      • О доставке договоримся в чате
-    </div>
-  </div>
+        fetch('products.json?v=' + new Date().getTime())
+            .then(r => r.json())
+            .then(data => {
+                globalProducts = data;
+                const cat = document.getElementById('catalog');
+                
+                for (let id in data) {
+                    let p = data[id];
+                    if (p.archived) continue; // Не показываем скрытые
+                    
+                    // Если у старых товаров нет поля stock, считаем что их 999
+                    let stock = p.stock !== undefined ? p.stock : 999; 
+                    
+                    let stockHtml = stock > 0 
+                        ? `<div class="stock-badge in-stock">В наличии: ${stock}</div>` 
+                        : `<div class="stock-badge out-stock">Нет в наличии</div>`;
+                        
+                    let btnHtml = stock > 0
+                        ? `<button onclick="addToCart('${id}')">В корзину</button>`
+                        : `<button disabled>Раскупили</button>`;
 
-  <div class="sum-box" id="cart-sum" hidden></div>
-</div>
+                    cat.innerHTML += `
+                        <div class="card">
+                            <div>
+                                <img src="${p.img || 'https://via.placeholder.com/150'}" alt="">
+                                <div class="title">${p.name}</div>
+                                <div class="price">${p.price} ₽</div>
+                                ${stockHtml}
+                            </div>
+                            ${btnHtml}
+                        </div>
+                    `;
+                }
+            });
 
-<div id="view-profile" hidden>
-  <div class="prof-head">
-    <button class="back" id="backProfBtn" hidden>← Назад</button>
-    <h2>Мой профиль</h2>
-  </div>
-  <div style="padding: 16px;">
-    <h3 style="margin-bottom: 12px; font-size: 16px; color: var(--hint);">История заказов</h3>
-    <div id="history-list"></div>
-  </div>
-</div>
+        function addToCart(id) {
+            let p = globalProducts[id];
+            let maxStock = p.stock !== undefined ? p.stock : 999;
+            
+            if (!cart[id]) cart[id] = 0;
+            if (cart[id] < maxStock) {
+                cart[id]++;
+                updateCartUI();
+                tg.HapticFeedback.impactOccurred('light');
+            } else {
+                tg.showAlert('Больше нет в наличии!');
+            }
+        }
 
-<div id="bar" hidden><button id="barBtn"></button></div>
+        function updateCartUI() {
+            let totalSum = 0;
+            let itemsCount = 0;
+            
+            for (let id in cart) {
+                itemsCount += cart[id];
+                totalSum += globalProducts[id].price * cart[id];
+            }
+            
+            document.getElementById('total').innerText = totalSum;
+            document.getElementById('cart-bar').style.display = itemsCount > 0 ? 'flex' : 'none';
+        }
 
-<script>
-const tg = window.Telegram && window.Telegram.WebApp;
-const inTg = !!(tg && tg.platform && tg.platform !== "unknown");
-const CUR = "₽";
-const fmt = n => n.toLocaleString("ru-RU") + " " + CUR;
-const $ = id => document.getElementById(id);
-
-let CATALOG = [];
-let cats = ["Все"];
-let cart = {};
-let activeCat = "Все";
-let q = "";
-let currentView = "list"; 
-
-async function init() {
-  try {
-    const res = await fetch('products.json?v=' + Date.now());
-    const data = await res.json();
-    for (let id in data) {
-      CATALOG.push({ 
-        id, 
-        nm: data[id].name, 
-        pr: data[id].price, 
-        cat: data[id].category || "Товары",
-        badge: data[id].badge || "",
-        img: data[id].img || "" 
-      });
-    }
-    cats = ["Все", ...new Set(CATALOG.map(c => c.cat))];
-    renderChips();
-    renderGrid();
-  } catch (e) {
-    $('grid').innerHTML = '<div class="empty" style="grid-column: span 2;">Ошибка загрузки товаров.</div>';
-  }
-}
-
-function getCtrl(id) {
-  const count = cart[id] || 0;
-  if (count === 0) return `<button class="btn-add" onclick="chg('${id}', 1)">+</button>`;
-  return `<div class="ctrl"><button onclick="chg('${id}', -1)">−</button><span>${count}</span><button onclick="chg('${id}', 1)">+</button></div>`;
-}
-
-window.chg = (id, delta) => {
-  cart[id] = Math.max(0, (cart[id] || 0) + delta);
-  if (cart[id] === 0) delete cart[id];
-  try { tg && tg.HapticFeedback && tg.HapticFeedback.selectionChanged(); } catch (e) {}
-  if (currentView === "list") {
-    const box = $(`ctrl-box-${id}`);
-    if (box) box.innerHTML = getCtrl(id);
-  } else {
-    renderCart();
-  }
-  updateMainButton();
-};
-
-function renderChips() {
-  $('chips').innerHTML = cats.map(c =>
-    `<button class="chip ${c === activeCat ? 'active' : ''}" onclick="setCat('${c}')">${c}</button>`
-  ).join("");
-}
-window.setCat = (c) => { activeCat = c; renderChips(); renderGrid(); };
-
-function renderGrid() {
-  const filtered = CATALOG.filter(c => (activeCat === "Все" || c.cat === activeCat) && c.nm.toLowerCase().includes(q));
-  if (!filtered.length) {
-    $('grid').innerHTML = '<div class="empty" style="grid-column: span 2;">Ничего не найдено</div>';
-    return;
-  }
-  $('grid').innerHTML = filtered.map(c => `
-    <div class="card">
-      ${c.badge ? `<div class="badge">${c.badge}</div>` : ''}
-      ${c.img ? `<img src="${c.img}" class="img-ph">` : `<div class="img-ph">Нет фото</div>`}
-      <div class="info">
-        <div class="nm">${c.nm}</div>
-        <div class="bot">
-          <span class="pr">${fmt(c.pr)}</span>
-          <div id="ctrl-box-${c.id}">${getCtrl(c.id)}</div>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
-
-function renderCart() {
-  const ids = Object.keys(cart);
-  if (!ids.length) {
-    $('cart-list').innerHTML = '<div class="empty">Корзина пуста</div>';
-    $('cart-sum').hidden = true;
-    $('checkout-info').hidden = true;
-    return;
-  }
-  let total = 0;
-  $('cart-list').innerHTML = ids.map((id, index) => {
-    const item = CATALOG.find(c => c.id === id);
-    total += item.pr * cart[id];
-    return `
-      <div class="cart-item" style="animation-delay: ${index * 0.05}s">
-        <div style="flex:1; padding-right:12px;">
-          <div class="nm">${item.nm}</div>
-          <div class="pr">${fmt(item.pr)}</div>
-        </div>
-        <div>${getCtrl(id)}</div>
-      </div>`;
-  }).join("");
-  $('cart-sum').hidden = false;
-  $('cart-sum').innerHTML = `<span>Итого:</span><span>${fmt(total)}</span>`;
-  $('checkout-info').hidden = false;
-}
-
-function switchViewTo(viewId) {
-  const el = $(viewId);
-  el.classList.remove('animate-view');
-  void el.offsetWidth;
-  el.classList.add('animate-view');
-  el.hidden = false;
-}
-
-function updateMainButton() {
-  const n = Object.values(cart).reduce((a, b) => a + b, 0);
-  let sum = 0;
-  Object.keys(cart).forEach(id => { sum += CATALOG.find(c => c.id === id).pr * cart[id]; });
-  const label = currentView === "list" ? `Корзина · ${fmt(sum)}` : `Оформить заказ · ${fmt(sum)}`;
-  if (inTg) {
-    if (n && currentView !== "profile") { tg.MainButton.setText(label); tg.MainButton.show(); } else tg.MainButton.hide();
-  } else {
-    $('bar').hidden = (!n || currentView === "profile");
-    $('barBtn').textContent = label;
-  }
-}
-
-function showProfile() {
-  currentView = "profile";
-  $('view-list').hidden = true;
-  $('view-cart').hidden = true;
-  switchViewTo('view-profile');
-  
-  if (inTg) { tg.BackButton.show(); tg.MainButton.hide(); } 
-  else { $('backProfBtn').hidden = false; $('bar').hidden = true; }
-  
-  const history = JSON.parse(localStorage.getItem("ordersHistory") || "[]");
-  if (!history.length) {
-    $('history-list').innerHTML = '<div class="empty">Вы еще ничего не заказывали</div>';
-    return;
-  }
-  
-  $('history-list').innerHTML = history.map(h => `
-    <div class="history-item">
-      <div class="history-date">${h.date}</div>
-      ${h.items.map(i => `<div class="history-row"><span>${i.nm} × ${i.qty}</span><span>${fmt(i.sum)}</span></div>`).join("")}
-      <div class="history-total">Итого: ${fmt(h.total)}</div>
-    </div>
-  `).join("");
-}
-
-function showCart() {
-  currentView = "cart";
-  $('view-list').hidden = true;
-  $('view-profile').hidden = true;
-  switchViewTo('view-cart');
-  if (inTg) tg.BackButton.show(); else $('backBtn').hidden = false;
-  renderCart();
-  updateMainButton();
-  window.scrollTo(0, 0);
-}
-
-function showList() {
-  currentView = "list";
-  $('view-cart').hidden = true;
-  $('view-profile').hidden = true;
-  switchViewTo('view-list');
-  if (inTg) tg.BackButton.hide();
-  renderGrid();
-  updateMainButton();
-  window.scrollTo(0, 0);
-}
-
-function sendOrder() {
-  const history = JSON.parse(localStorage.getItem("ordersHistory") || "[]");
-  let orderLines = [];
-  let total = 0;
-  
-  Object.keys(cart).forEach(id => {
-    const c = CATALOG.find(x => x.id === id);
-    orderLines.push({ nm: c.nm, qty: cart[id], sum: c.pr * cart[id] });
-    total += c.pr * cart[id];
-  });
-  
-  history.unshift({ date: new Date().toLocaleString("ru-RU", {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}), items: orderLines, total });
-  localStorage.setItem("ordersHistory", JSON.stringify(history.slice(0, 15)));
-
-  const order = { i: Object.entries(cart).map(([id, n]) => [+id, n]) };
-  if (inTg) tg.sendData(JSON.stringify(order));
-  else alert("Заказ отправлен (проверка в браузере)!");
-}
-
-function mainAction() { currentView === "list" ? showCart() : sendOrder(); }
-
-if (inTg) {
-  tg.ready();
-  tg.expand();
-  try {
-    tg.setHeaderColor("#13111C");
-    tg.setBackgroundColor("#13111C");
-    tg.MainButton.setParams({ color: "#9333EA", text_color: "#FFFFFF" });
-  } catch (e) {}
-  tg.MainButton.onClick(mainAction);
-  tg.BackButton.onClick(() => {
-    if (currentView === "cart" || currentView === "profile") showList();
-  });
-}
-$('barBtn').onclick = mainAction;
-$('backBtn').onclick = showList;
-$('profBtn').onclick = showProfile;
-$('backProfBtn').onclick = showList;
-$('q').addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); renderGrid(); });
-
-// 18+
-let ok = false;
-try { ok = localStorage.getItem("age18") === "1"; } catch (e) {}
-$('gate').hidden = ok;
-if (ok) init();
-$('yes').onclick = () => {
-  try { localStorage.setItem("age18", "1"); } catch (e) {}
-  $('gate').hidden = true;
-  init();
-};
-$('no').onclick = () => { inTg ? tg.close() : (document.body.innerHTML = "<p style='padding:30px'>Доступ закрыт.</p>"); };
-</script>
+        function sendOrder() {
+            let orderData = { i: Object.entries(cart) };
+            tg.sendData(JSON.stringify(orderData));
+        }
+    </script>
 </body>
 </html>
