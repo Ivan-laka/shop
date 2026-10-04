@@ -203,22 +203,5 @@
     "name": "УБИВАШКА 80 MG (Ягодный морс)",
     "price": 400,
     "category": "Жидкости"
-  },
-  "42": {
-    "name": "тестовый товар",
-    "price": 350,
-    "category": "жидкость"
-  },
-  "43": {
-    "name": "тестовый",
-    "price": 450,
-    "category": "жидкость",
-    "img": "https://Ivan-laka.github.io/shop/images/43.jpg"
-  },
-  "45": {
-    "name": "тестовый 2",
-    "price": 350,
-    "category": "жидкости",
-    "img": "https://Ivan-laka.github.io/shop/images/45.jpg"
   }
 }
