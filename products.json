@@ -2,7 +2,8 @@
   "1": {
     "name": "D.L.T.A 50 MG (BURN drak energy цитрус)",
     "price": 350,
-    "category": "Жидкости"
+    "category": "Жидкости",
+    "qty": 1
   },
   "2": {
     "name": "D.L.T.A 50 MG (Blue energy)",
