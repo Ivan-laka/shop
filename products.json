@@ -80,7 +80,7 @@
     "name": "MONSTERVAPOR SOUR 7% - Киви лайм",
     "price": 400,
     "category": "Жидкости",
-    "hidden": true
+    "hidden": false
   },
   "17": {
     "name": "MONSTERVAPOR SOUR 7% - Кислые Ананас Манго",
