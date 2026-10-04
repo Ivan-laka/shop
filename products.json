@@ -215,5 +215,12 @@
     "category": "Комплектующие",
     "qty": 2,
     "img": "https://Ivan-laka.github.io/shop/images/42_1791144345.jpg"
+  },
+  "43": {
+    "name": "Pasito",
+    "price": 2000,
+    "category": "Устройства",
+    "qty": 1,
+    "img": "https://Ivan-laka.github.io/shop/images/43_1791144466.jpg"
   }
 }
