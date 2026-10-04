@@ -221,6 +221,7 @@
     "price": 2000,
     "category": "Устройства",
     "qty": 0,
-    "img": "https://Ivan-laka.github.io/shop/images/43_1791144466.jpg"
+    "img": "https://Ivan-laka.github.io/shop/images/43_1791144466.jpg",
+    "hidden": true
   }
 }
