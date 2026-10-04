@@ -208,5 +208,12 @@
     "name": "УБИВАШКА 80 MG (Ягодный морс)",
     "price": 400,
     "category": "Жидкости"
+  },
+  "42": {
+    "name": "Подик",
+    "price": 1050,
+    "category": "Комплектующие",
+    "qty": 2,
+    "img": "https://Ivan-laka.github.io/shop/images/42_1791144345.jpg"
   }
 }
